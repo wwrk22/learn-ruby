@@ -1,33 +1,35 @@
-def caesar_cipher(message, offset)
-  
-  encrypted_message = ''
+class CaesarCipher
 
-  message.each_char do |ch|
+  def encrypt(message, offset)
+    
+    encrypted_message = ''
 
-    ch_ord = ch.ord
+    message.each_char do |ch|
 
-    if ch_ord.between?(65, 90) || ch_ord.between?(97, 122)
+      ch_ord = ch.ord
 
-      ord_base = ch_ord <= 90 ? 65 : 97
+      if ch_ord.between?(65, 90) || ch_ord.between?(97, 122)
 
-      ord_shifted = ch_ord + offset
+        ord_base = ch_ord <= 90 ? 65 : 97
 
-      shift_from_base = (ord_shifted - ord_base) % 26
+        ord_shifted = ch_ord + offset
 
-      ord_final = ord_base + shift_from_base
+        shift_from_base = (ord_shifted - ord_base) % 26
 
-      encrypted_message << ord_final.chr
+        ord_final = ord_base + shift_from_base
 
-    else
+        encrypted_message << ord_final.chr
 
-      encrypted_message << ch
+      else
+
+        encrypted_message << ch
+
+      end
 
     end
 
+    return encrypted_message
+
   end
 
-  return encrypted_message
-
 end
-
-puts caesar_cipher("What a string!", 5) # -> "Bmfy f xywnsl!"
